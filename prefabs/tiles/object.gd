@@ -1,26 +1,32 @@
 extends RigidBody2D
 
-signal clicked
 
-var held = false
+var _picked = false
+var _last_mouse_pos = Vector2.ZERO
+
+
+func _ready():
+	input_pickable = true
+
+
+func _input(event):
+	var mouse_event = event as InputEventMouseButton
+	if mouse_event and not mouse_event.pressed:
+		_picked = false
+
 
 func _input_event(_viewport, event, _shape_idx):
-	if event is InputEventMouseButton:
-		if event.pressed:
-			emit_signal("clicked", self)
+	var mouse_event = event as InputEventMouseButton
+	if mouse_event and mouse_event.pressed:
+		_picked = true
+		_last_mouse_pos = get_global_mouse_position()
 
-func _physics_process(_delta):
-	if held:
-		global_transform.origin = get_global_mouse_position()
 
-func pickup():
-	if held:
-		return
-	mode = RigidBody2D.MODE_STATIC
-	held = true
-
-func drop(impulse=Vector2.ZERO):
-	if held:
-		mode = RigidBody2D.MODE_RIGID
-		apply_central_impulse(impulse)
-		held = false
+func _physics_process(delta):
+	if _picked:
+		var mouse_pos = get_global_mouse_position()
+		if mode == MODE_STATIC:
+			global_position = mouse_pos
+		else:
+			linear_velocity = (mouse_pos - _last_mouse_pos) / delta
+			_last_mouse_pos = mouse_pos
