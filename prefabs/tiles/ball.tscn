@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://prefabs/tiles/object.gd" type="Script" id=2]
+[ext_resource path="res://res/tiles/ball.png" type="Texture" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+
+[node name="ball" type="RigidBody2D" groups=[
+"pickable",
+]]
+input_pickable = true
+mass = 5.0
+gravity_scale = 8.0
+can_sleep = false
+script = ExtResource( 2 )
+
+[node name="ball" type="Sprite" parent="."]
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 3 )
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+scale = Vector2( 4.6, 4.6 )
+shape = SubResource( 1 )

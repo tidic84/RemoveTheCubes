@@ -1,0 +1,72 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://prefabs/tiles/wood.tscn" type="PackedScene" id=1]
+[ext_resource path="res://res/all/background.png" type="Texture" id=2]
+[ext_resource path="res://res/all/background2.png" type="Texture" id=3]
+[ext_resource path="res://scenes/levels/level1.gd" type="Script" id=4]
+[ext_resource path="res://prefabs/tiles/ball.tscn" type="PackedScene" id=5]
+[ext_resource path="res://prefabs/tiles/half_wood.tscn" type="PackedScene" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 1.47949, 13.1019 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 10, 1.59492 )
+
+[node name="Level1" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="Background" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+centered = false
+
+[node name="background2" type="Sprite" parent="."]
+position = Vector2( 75, 75 )
+texture = ExtResource( 3 )
+centered = false
+
+[node name="Bords" type="StaticBody2D" parent="."]
+scale = Vector2( 50, 50 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Bords"]
+position = Vector2( 14.4796, 12.7056 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bords"]
+position = Vector2( 0.0204233, 12.831 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Bords"]
+position = Vector2( 7.4479, 25.6956 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Bords"]
+position = Vector2( 6.94587, -0.0953955 )
+shape = SubResource( 2 )
+
+[node name="wood7" parent="." instance=ExtResource( 1 )]
+position = Vector2( 128.153, 1051.1 )
+
+[node name="half_wood2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 227.343, 1052.41 )
+
+[node name="half_wood3" parent="." instance=ExtResource( 6 )]
+position = Vector2( 130.329, 954.138 )
+
+[node name="wood8" parent="." instance=ExtResource( 1 )]
+position = Vector2( 226.665, 1154.68 )
+
+[node name="ball" parent="." instance=ExtResource( 5 )]
+position = Vector2( 119.593, 815.168 )
+
+[node name="ball2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 462.037, 542.769 )
+
+[node name="wood" parent="." instance=ExtResource( 1 )]
+position = Vector2( 127.661, 1154.62 )
+
+[node name="half_wood" parent="." instance=ExtResource( 6 )]
+position = Vector2( 326.877, 1154.47 )
+
+[node name="wood9" parent="." instance=ExtResource( 1 )]
+position = Vector2( 468.496, 844.964 )
